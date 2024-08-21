@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mpox Watch - Global Health Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #002366;
+        }
+        header {
+            background-color: #002366;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header img {
+            max-width: 150px;
+        }
+        nav {
+            text-align: center;
+            background-color: #00A4CC;
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #main-banner {
+            background-color: #e3e3e3;
+            padding: 20px;
+            text-align: center;
+        }
+        #main-banner h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .stats-section {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 0;
+        }
+        .stat-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 30%;
+        }
+        .stat-box h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .stat-box p {
+            font-size: 18px;
+        }
+        #charts {
+            padding: 20px;
+        }
+        .chart {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        footer {
+            background-color: #002366;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="Create_a_clean,monochromatic_logo_for'Mpox_Watch.png" alt="Mpox Watch Logo">
+        <h1>Mpox Watch</h1>
+    </header>
+    <nav>
+        <a href="#global-stats">Global Stats</a>
+        <a href="#charts-section">Charts</a>
+        <a href="#footer">About</a>
+    </nav>
+    <div id="main-banner">
+        <h1>Global Mpox Monitoring Dashboard</h1>
+        <p>Stay updated with the latest data on Mpox cases worldwide.</p>
+    </div>
+    <section class="stats-section" id="global-stats">
+        <div class="stat-box">
+            <h2>Global Cases</h2>
+            <p>95,226</p>
+        </div>
+        <div class="stat-box">
+            <h2>Global Deaths</h2>
+            <p>65</p>
+        </div>
+        <div class="stat-box">
+            <h2>Top Affected Countries</h2>
+            <p>USA: 29,513 | Brazil: 10,231 | Spain: 7,412</p>
+        </div>
+    </section>
+    <div id="charts-section">
+        <div class="chart">
+            <h3>Global Cases Over Time</h3>
+            <canvas id="globalCasesChart"></canvas>
+        </div>
+        <div class="chart">
+            <h3>Distribution by Continent</h3>
+            <canvas id="continentDistributionChart"></canvas>
+        </div>
+        <div class="chart">
+            <h3>Number of Cases by Month</h3>
+            <canvas id="casesByMonthChart"></canvas>
+        </div>
+    </div>
+    <footer id="footer">
+        <p>© 2024 Mpox Watch - All Rights Reserved</p>
+    </footer>
+
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Global Cases Over Time Chart
+        const ctx1 = document.getElementById('globalCasesChart').getContext('2d');
+        const globalCasesChart = new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
+                datasets: [{
+                    label: 'Global Cases',
+                    data: [1000, 2500, 5000, 8000, 12000, 20000, 35000, 95000],
+                    backgroundColor: 'rgba(0, 164, 204, 0.2)',
+                    borderColor: '#00A4CC',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Distribution by Continent Chart
+        const ctx2 = document.getElementById('continentDistributionChart').getContext('2d');
+        const continentDistributionChart = new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: ['North America', 'South America', 'Europe', 'Africa', 'Asia'],
+                datasets: [{
+                    label: 'Cases by Continent',
+                    data: [45000, 30000, 15000, 4000, 1000],
+                    backgroundColor: [
+                        '#002366',
+                        '#00A4CC',
+                        '#00CC66',
+                        '#FFCC00',
+                        '#FF6633'
+                    ],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        // Number of Cases by Month Chart
+        const ctx3 = document.getElementById('casesByMonthChart').getContext('2d');
+        const casesByMonthChart = new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
+                datasets: [{
+                    label: 'Cases by Month',
+                    data: [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000],
+                    backgroundColor: '#002366',
+                    borderColor: '#002366',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
